@@ -82,7 +82,7 @@ Systems included In this diagram will be further referred to as (S1), (S2), (S3)
 ### Use cases
 Use cases included In this diagram will be further referred to as (UC1), (UC2), (UC3), etc.
 
-![Use case diagram](use-case-diagram-0.png")
+![Use case diagram](use-case-diagram-0.png)
 
 ### Conceptual data model
 ![Conceptual data model diagram](conceptual-data-model-diagram-1.png)
