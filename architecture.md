@@ -77,15 +77,15 @@ Characteristics described below will be further referred to as (C1), (C2), (C3),
 ### System diagram
 Systems included In this diagram will be further referred to as (S1), (S2), (S3), etc.
 
-![System diagram](system-diagram-1.png "System diagram")
+![System diagram](system-diagram-1.png)
 
 ### Use cases
 Use cases included In this diagram will be further referred to as (UC1), (UC2), (UC3), etc.
 
-![Use case diagram](use-case-diagram-1.png "Use case diagram")
+![Use case diagram](use-case-diagram-0.png")
 
 ### Conceptual data model
-![Conceptual data model diagram](conceptual-data-model-diagram-1.png "Conceptual data model diagram")
+![Conceptual data model diagram](conceptual-data-model-diagram-1.png)
 
 
 ## Containers (C2)
@@ -95,22 +95,27 @@ Modules included in this diagram will be further referred to as (M1.1), (M1.2), 
 
 Data stores included in this diagram will be further referred to as (DS1), (DS2), (DS3), etc.
 
-![Container diagram](container-diagram-1.png "Container diagram")
+![Container diagram](container-diagram-1.png)
 
 ### Use cases
 
 #### (UC1) Customer browses restaurants
 
 ##### Use case diagram
+![Use case diagram for UC1](use-case-diagram-1.png)
 
 ##### (UC1.1) Customer searches for restaurant
 
 ###### Sequence diagram
+![Sequence diagram for UC1.1](sequence-diagram-1-1.png)
 
 #### (UC2) Customer orders
+![Use case diagram for UC2](use-case-diagram-2.png)
 
 ##### (UC2.2) Customer places order
 
+###### Sequence diagram
+![Sequence diagram for UC2.2](sequence-diagram-2-2.png)
 
 ## Decisions
 
