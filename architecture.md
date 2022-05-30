@@ -75,7 +75,9 @@ Characteristics described below will be further referred to as (C1), (C2), (C3),
 ## System (C1)
 
 ### System diagram
-Systems included In this diagram will be further referred to as (S1), (S2), (S3), etc.
+Systems included in this diagram will be further referred to as (S1), (S2), (S3), etc.
+
+External systems included in this diagram will be further referred to as (E1), (E2), (E3), etc.
 
 ![System diagram](system-diagram-1.png)
 
@@ -119,7 +121,8 @@ Data stores included in this diagram will be further referred to as (DS1.1), (DS
 
 ## Components (C3)
 
-### Component diagram
+### Component diagram for (M1.1) Web application
+![Component diagram for (M1.1) Web application](component-diagram-1-1.png)
 
 ### Entity-relationship data model
 
@@ -128,10 +131,10 @@ Data stores included in this diagram will be further referred to as (DS1.1), (DS
 ##### RESTAURANTS
 | PK | FK | Name | Type |
 | --- | --- | --- | --- |
-| ✓ | | Id | Uuid |
-| | ✓ | LocationId | Uuid |
-| | ✓ | ContactId | Uuid |
-| | ✓ | MenuId | Uuid |
+| ✓ | | Id | uuid4 |
+| | ✓ | LocationId | uuid4 |
+| | ✓ | ContactId | uuid4 |
+| | ✓ | MenuId | uuid4 |
 | | | Name | varchar(255) |
 | | | Description | varchar(4096) |
 | | | Delivery | bit |
@@ -139,14 +142,14 @@ Data stores included in this diagram will be further referred to as (DS1.1), (DS
 ##### MENUS
 | PK | FK | Name | Type |
 | --- | --- | --- | --- |
-| ✓ | | Id | Uuid |
+| ✓ | | Id | uuid4 |
 | | | Name | varchar(255) |
 | | | Description | varchar(4096) |
 
 ##### MENU_ITEMS
 | PK | FK | Name | Type |
 | --- | --- | --- | --- |
-| ✓ | | Id | Uuid |
+| ✓ | | Id | uuid4 |
 | | | Name | varchar(255) |
 | | | Description | varchar(4096) |
 | | | Type | char(1) |
@@ -155,46 +158,46 @@ Data stores included in this diagram will be further referred to as (DS1.1), (DS
 ##### MENU_ITEMS_TO_MENUS
 | PK | FK | Name | Type |
 | --- | --- | --- | --- |
-| ✓ | | Id | Uuid |
-| | ✓ | MenuId | Uuid |
-| | ✓ | MenuItemId | Uuid |
+| ✓ | | Id | uuid4 |
+| | ✓ | MenuId | uuid4 |
+| | ✓ | MenuItemId | uuid4 |
 
 ##### PROMOTIONS
 | PK | FK | Name | Type |
 | --- | --- | --- | --- |
-| ✓ | | Id | Uuid |
+| ✓ | | Id | uuid4 |
 | | | Name | varchar(255) |
 | | | Description | varchar(4096) |
 
 ##### PROMOTIONS_TO_MENU_ITEMS
 | PK | FK | Name | Type |
 | --- | --- | --- | --- |
-| ✓ | | Id | Uuid |
-| | ✓ | PromotionId | Uuid |
-| | ✓ | MenuItemId | Uuid |
+| ✓ | | Id | uuid4 |
+| | ✓ | PromotionId | uuid4 |
+| | ✓ | MenuItemId | uuid4 |
 | | | NewPrice | integer(8) |
 
 ##### PROMOTIONS_TO_RESTAURANTS
 | PK | FK | Name | Type |
 | --- | --- | --- | --- |
-| ✓ | | Id | Uuid |
-| | ✓ | PromotionId | Uuid |
-| | ✓ | RestaurantId | Uuid |
+| ✓ | | Id | uuid4 |
+| | ✓ | PromotionId | uuid4 |
+| | ✓ | RestaurantId | uuid4 |
 
 #### (DS1.3) Users DB
 
 ##### USERS
 | PK | FK | Name | Type |
 | --- | --- | --- | --- |
-| ✓ | | Id | Uuid |
-| | ✓ | RoleId | Uuid |
+| ✓ | | Id | uuid4 |
+| | ✓ | RoleId | uuid4 |
 | | | Username | varchar(255) |
 | | | Password | varchar(255) |
 
 ##### ROLES
 | PK | FK | Name | Type |
 | --- | --- | --- | --- |
-| ✓ | | Id | Uuid |
+| ✓ | | Id | uuid4 |
 | | | Name | varchar(255) |
 | | | Description | varchar(4096) |
 | | | AccessLevel | integer(10) |
@@ -202,8 +205,8 @@ Data stores included in this diagram will be further referred to as (DS1.1), (DS
 ##### USER_ACTIONS_LOG
 | PK | FK | Name | Type |
 | --- | --- | --- | --- |
-| ✓ | | Id | Uuid |
-| | ✓ | UserId | Uuid |
+| ✓ | | Id | uuid4 |
+| | ✓ | UserId | uuid4 |
 | | | Action | varchar(255) |
 | | | Timestamp | timestamp |
 
@@ -212,9 +215,9 @@ Data stores included in this diagram will be further referred to as (DS1.1), (DS
 ##### ORDERS
 | PK | FK | Name | Type |
 | --- | --- | --- | --- |
-| ✓ | | Id | Uuid |
-| | ✓ | LocationId | Uuid |
-| | ✓ | ContactId | Uuid |
+| ✓ | | Id | uuid4 |
+| | ✓ | LocationId | uuid4 |
+| | ✓ | ContactId | uuid4 |
 | | | Comment | varchar(255) |
 | | | Price | integer(10) |
 | | | PaymentType | char(1) |
@@ -222,16 +225,16 @@ Data stores included in this diagram will be further referred to as (DS1.1), (DS
 ##### MENU_ITEMS_TO_ORDERS
 | PK | FK | Name | Type |
 | --- | --- | --- | --- |
-| ✓ | | Id | Uuid |
-| | ✓ | OrderId | Uuid |
-| | ✓ | MenuItemId | Uuid |
-| | ✓ | PromotionId | Uuid |
+| ✓ | | Id | uuid4 |
+| | ✓ | OrderId | uuid4 |
+| | ✓ | MenuItemId | uuid4 |
+| | ✓ | PromotionId | uuid4 |
 
 ##### ORDERS_UPDATES
 | PK | FK | Name | Type |
 | --- | --- | --- | --- |
-| ✓ | | Id | Uuid |
-| | ✓ | OrderId | Uuid |
+| ✓ | | Id | uuid4 |
+| | ✓ | OrderId | uuid4 |
 | | | Status | char(1) |
 | | | Comment | varchar(255) |
 | | | Timestamp | timestamp |
@@ -241,7 +244,7 @@ Data stores included in this diagram will be further referred to as (DS1.1), (DS
 ##### LOCATIONS
 | PK | FK | Name | Type |
 | --- | --- | --- | --- |
-| ✓ | | Id | Uuid |
+| ✓ | | Id | uuid4 |
 | | | CountryCode | char(3) |
 | | | CurrencyCode | char(3) |
 | | | Region | varchar(255) |
@@ -254,7 +257,7 @@ Data stores included in this diagram will be further referred to as (DS1.1), (DS
 ##### CONTACTS
 | PK | FK | Name | Type |
 | --- | --- | --- | --- |
-| ✓ | | Id | Uuid |
+| ✓ | | Id | uuid4 |
 | | | FirstName | varchar(255) |
 | | | LastName | varchar(255) |
 | | | PhoneNumber | numeric(12) |
@@ -262,6 +265,8 @@ Data stores included in this diagram will be further referred to as (DS1.1), (DS
 
 ## Decisions
 
-### (ADR1) Decision to treat "specials" as menu items of different type
+### (ADR1) Decision to use distributed, layered architecture
 
-### (ADR2) Decision to separate APIs and DSs into Restaurants, Users, Orders, and Contacts & Locations
+### (ADR2) Decision to treat "specials" as menu items of different type
+
+### (ADR3) Decision to separate APIs and DSs into Restaurants, Users, Orders, and Contacts & Locations
