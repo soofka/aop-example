@@ -93,7 +93,7 @@ Use cases included In this diagram will be further referred to as (UC1), (UC2), 
 ### Container diagram
 Modules included in this diagram will be further referred to as (M1.1), (M1.2), (M1.3), etc.
 
-Data stores included in this diagram will be further referred to as (DS1), (DS2), (DS3), etc.
+Data stores included in this diagram will be further referred to as (DS1.1), (DS1.2), (DS1.3), etc.
 
 ![Container diagram](container-diagram-1.png)
 
@@ -117,8 +117,151 @@ Data stores included in this diagram will be further referred to as (DS1), (DS2)
 ###### Sequence diagram
 ![Sequence diagram for UC2.2](sequence-diagram-2-2.png)
 
+## Components (C3)
+
+### Component diagram
+
+### Entity-relationship data model
+
+#### (DS1.2) Restaurants DB
+
+##### RESTAURANTS
+| PK | FK | Name | Type |
+| --- | --- | --- | --- |
+| ✓ | | Id | Uuid |
+| | ✓ | LocationId | Uuid |
+| | ✓ | ContactId | Uuid |
+| | ✓ | MenuId | Uuid |
+| | | Name | varchar(255) |
+| | | Description | varchar(4096) |
+| | | Delivery | bit |
+
+##### MENUS
+| PK | FK | Name | Type |
+| --- | --- | --- | --- |
+| ✓ | | Id | Uuid |
+| | | Name | varchar(255) |
+| | | Description | varchar(4096) |
+
+##### MENU_ITEMS
+| PK | FK | Name | Type |
+| --- | --- | --- | --- |
+| ✓ | | Id | Uuid |
+| | | Name | varchar(255) |
+| | | Description | varchar(4096) |
+| | | Type | char(1) |
+| | | Price | integer(8) |
+
+##### MENU_ITEMS_TO_MENUS
+| PK | FK | Name | Type |
+| --- | --- | --- | --- |
+| ✓ | | Id | Uuid |
+| | ✓ | MenuId | Uuid |
+| | ✓ | MenuItemId | Uuid |
+
+##### PROMOTIONS
+| PK | FK | Name | Type |
+| --- | --- | --- | --- |
+| ✓ | | Id | Uuid |
+| | | Name | varchar(255) |
+| | | Description | varchar(4096) |
+
+##### PROMOTIONS_TO_MENU_ITEMS
+| PK | FK | Name | Type |
+| --- | --- | --- | --- |
+| ✓ | | Id | Uuid |
+| | ✓ | PromotionId | Uuid |
+| | ✓ | MenuItemId | Uuid |
+| | | NewPrice | integer(8) |
+
+##### PROMOTIONS_TO_RESTAURANTS
+| PK | FK | Name | Type |
+| --- | --- | --- | --- |
+| ✓ | | Id | Uuid |
+| | ✓ | PromotionId | Uuid |
+| | ✓ | RestaurantId | Uuid |
+
+#### (DS1.3) Users DB
+
+##### USERS
+| PK | FK | Name | Type |
+| --- | --- | --- | --- |
+| ✓ | | Id | Uuid |
+| | ✓ | RoleId | Uuid |
+| | | Username | varchar(255) |
+| | | Password | varchar(255) |
+
+##### ROLES
+| PK | FK | Name | Type |
+| --- | --- | --- | --- |
+| ✓ | | Id | Uuid |
+| | | Name | varchar(255) |
+| | | Description | varchar(4096) |
+| | | AccessLevel | integer(10) |
+
+##### USER_ACTIONS_LOG
+| PK | FK | Name | Type |
+| --- | --- | --- | --- |
+| ✓ | | Id | Uuid |
+| | ✓ | UserId | Uuid |
+| | | Action | varchar(255) |
+| | | Timestamp | timestamp |
+
+#### (DS1.4) Orders DB
+
+##### ORDERS
+| PK | FK | Name | Type |
+| --- | --- | --- | --- |
+| ✓ | | Id | Uuid |
+| | ✓ | LocationId | Uuid |
+| | ✓ | ContactId | Uuid |
+| | | Comment | varchar(255) |
+| | | Price | integer(10) |
+| | | PaymentType | char(1) |
+
+##### MENU_ITEMS_TO_ORDERS
+| PK | FK | Name | Type |
+| --- | --- | --- | --- |
+| ✓ | | Id | Uuid |
+| | ✓ | OrderId | Uuid |
+| | ✓ | MenuItemId | Uuid |
+| | ✓ | PromotionId | Uuid |
+
+##### ORDERS_UPDATES
+| PK | FK | Name | Type |
+| --- | --- | --- | --- |
+| ✓ | | Id | Uuid |
+| | ✓ | OrderId | Uuid |
+| | | Status | char(1) |
+| | | Comment | varchar(255) |
+| | | Timestamp | timestamp |
+
+#### (DS1.5) Contacts & Locations DB
+
+##### LOCATIONS
+| PK | FK | Name | Type |
+| --- | --- | --- | --- |
+| ✓ | | Id | Uuid |
+| | | CountryCode | char(3) |
+| | | CurrencyCode | char(3) |
+| | | Region | varchar(255) |
+| | | City | varchar(255) |
+| | | Street | varchar(255) |
+| | | StreetNumber | varchar(255) |
+| | | PostalCode | numeric(6) |
+| | | Coordinates | varchar(64) |
+
+##### CONTACTS
+| PK | FK | Name | Type |
+| --- | --- | --- | --- |
+| ✓ | | Id | Uuid |
+| | | FirstName | varchar(255) |
+| | | LastName | varchar(255) |
+| | | PhoneNumber | numeric(12) |
+| | | EmailAddress | varchar(255) |
+
 ## Decisions
 
 ### (ADR1) Decision to treat "specials" as menu items of different type
 
-### (ADR2) Decision to separate Restaurants API from Orders API and Restaurants DS from Orders DS
+### (ADR2) Decision to separate APIs and DSs into Restaurants, Users, Orders, and Contacts & Locations
